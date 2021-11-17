@@ -44,9 +44,9 @@ class Auth extends CI_Controller {
 			$this->load->view('auth/register');
 		}else{
 			$data = [
-             'username' => htmlspecialchars($this->input->post('username')),
-			 'email' => htmlspecialchars($this->input->post('email')),
-			 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
+             'username' => htmlspecialchars($this->input->post('username', true)),
+			 'email' => htmlspecialchars($this->input->post('email', true)),
+			 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT)
 			];
 
 			$this->db->insert('user', $data);
@@ -59,7 +59,7 @@ class Auth extends CI_Controller {
 		$password = $this->input->post('password');
 		$user = $this->db->get_where('user', ['email' => $email])->row_array();
 		if($user){
-			if($password == $user['password']){
+			if(password_verify($password, $user['password'])){
 				  $data = [
 					'email' => $user['email'],
 					'password' => $user['password']
@@ -72,8 +72,14 @@ class Auth extends CI_Controller {
 					 redirect('auth'); 
 			}
 		 }else{
-			// $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Email is not registred!</div>');
+			$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Email is not registred!</div>');
 			   redirect('auth');
 		 }
+	}
+
+	public function logout(){
+		$this->session->sess_destroy();
+		$this->session->set_flashdata('message', '<small class="text-danger"></small>');
+		redirect('auth');
 	}
 }

@@ -16,7 +16,7 @@
             <?= $this->session->flashdata('message') ?>
                 <h3 class="text-center">Login Form</h3>
             </div>
-            <form  action="<?= base_url('auth') ?>" method="post" accept="" class="shadow p-4">                  
+            <form  action="<?= base_url('auth') ?>" method="post" class="shadow p-4">                  
                 <div class="mb-3">
                     <label for="email">Email</label>
                     <input type="text" class="form-control" name="email" id="email" placeholder="Username">
