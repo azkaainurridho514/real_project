@@ -60,12 +60,11 @@ class Auth extends CI_Controller {
 		$user = $this->db->get_where('user', ['email' => $email])->row_array();
 		if($user){
 			if($password == $user['password']){
-				//   $data = [
-				// 	'email' => $user['email'],
-				// 	'password' => $user['password']
-				//   ]; 
-				//   $this->session->set_userdata($data);
-				  echo"oke";
+				  $data = [
+					'email' => $user['email'],
+					'password' => $user['password']
+				  ]; 
+				  $this->session->set_userdata($data);
 				  redirect('admin');
 				  
 			   }else{
