@@ -29,7 +29,7 @@ class Auth extends CI_Controller {
 			'required' => 'Field username tidak boleh kosong!',
 			'min_length' => 'Masukan username minimal 8 karakter!'
 		]);
-		$this->form_validation->set_rules('email', 'email', 'required|trim|min_length[5]|valid_email', [
+		$this->form_validation->set_rules('email', 'email', 'required|trim|min_length[5]|valid_email|unique[user]', [
 			'required' => 'Field email tidak boleh kosong!',
 			'min_length' => 'Masukan email yang lebih dari 5 karakter!',
 			'valid_email' => 'Email tidak valid'
@@ -65,6 +65,7 @@ class Auth extends CI_Controller {
 	      if($user['is_active'] == 1){
 			if(password_verify($password, $user['password'])){
 				$data = [
+				  'id' => $user['id'],
 				  'email' => $user['email'],
 				  'role_id' => $user['role_id']
 				]; 

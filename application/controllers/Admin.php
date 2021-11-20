@@ -12,4 +12,10 @@ class Admin extends CI_Controller {
         $data['title'] = 'Admin';
         $this->template->load('template', 'dashboard/index', $data);
     }
+    public function profile($id)
+    {
+        $data['title'] = 'Profile';
+        $data['user'] = $this->db->get_where('user', ['id' => $id])->row_array();
+        $this->template->load('template', 'profile/profile', $data);
+    }
 }

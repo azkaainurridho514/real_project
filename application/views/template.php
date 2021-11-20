@@ -15,10 +15,14 @@
   <link href="<?= base_url() ?>assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="<?= base_url() ?>assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+  <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"> -->
   <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"> -->
+  <!-- bootstrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <!-- CSS Files -->
   <link id="pagestyle" href="<?= base_url() ?>assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
 </head>
@@ -72,10 +76,12 @@
             <?php foreach($submenu as $sm) : ?>     
               <li class="nav-item">
                 <!-- hapus =>  active bg-gradient-primary -->
-                <a class="nav-link text-white" href="<?= $sm['url'] ?>">
+                <a class="nav-link text-white" href="<?= base_url()?><?= $sm['url'] ?>">
                   <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="material-icons opacity-10">dashboard</i>
+                  <i class="<?= $sm['icon'] ?>" style="font-size: 25px"></i>
+                    <!-- <i class="fal fa-space-shuttle fa-2x fa-pulse"></i> -->
                     <!-- <i class="material-icons opacity-10">table_view</i> -->
+                    <!-- <i class="material-icons opacity-10">dashboard</i> -->
                     <!-- <i class="material-icons opacity-10">receipt_long</i> -->
                     <!-- <i class="material-icons opacity-10">view_in_ar</i> -->
                     <!-- <i class="material-icons opacity-10">format_textdirection_r_to_l</i> -->
@@ -95,17 +101,9 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="<?= base_url() ?>admin/profile">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <span class="nav-link-text ms-1">Profile</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-white " href="<?= base_url() ?>auth/logout" onclick="return confirm('Anda yakin ingin Log-Out?')">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10" >logout</i>
+            <i class="bi bi-box-arrow-left" style="font-size: 25px;"></i>
             </div>
             <span class="nav-link-text ms-1">Log-Out</span>
           </a>
@@ -566,6 +564,8 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="<?= base_url() ?>/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>

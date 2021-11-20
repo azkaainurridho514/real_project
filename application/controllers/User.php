@@ -10,6 +10,7 @@ class User extends CI_Controller {
     }
 
     public function index(){
-
+        $data['title'] = 'User';
+        $this->template->load('template', 'user/index', $data);
      }
 }
