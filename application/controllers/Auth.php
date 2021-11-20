@@ -2,7 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->library('form_validation');
 	}
@@ -46,11 +47,13 @@ class Auth extends CI_Controller {
 			$data = [
              'username' => htmlspecialchars($this->input->post('username', true)),
 			 'email' => htmlspecialchars($this->input->post('email', true)),
-			 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT)
+			 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+			 'role_id' => 2,
+			 'is_active' => 1
 			];
-
-			$this->db->insert('user', $data);
-			redirect('auth');
+        var_dump($data);
+			// $this->db->insert('user', $data);
+			// redirect('auth');
 		}
 	}
 
@@ -59,18 +62,32 @@ class Auth extends CI_Controller {
 		$password = $this->input->post('password');
 		$user = $this->db->get_where('user', ['email' => $email])->row_array();
 		if($user){
+	      if($user['is_active'] == 1){
 			if(password_verify($password, $user['password'])){
-				  $data = [
-					'email' => $user['email'],
-					'password' => $user['password']
-				  ]; 
-				  $this->session->set_userdata($data);
+				$data = [
+				  'email' => $user['email'],
+				  'role_id' => $user['role_id']
+				]; 
+				$this->session->set_userdata($data);
+				if($user['role_id'] == 1){
 				  redirect('admin');
 				  
 			   }else{
 				  $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Wrong password!</div>');
 					 redirect('auth'); 
 			}
+				}else{
+				  redirect('user');
+				}
+				
+			 }else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Wrong password!</div>');
+				   redirect('auth'); 
+		   }
+		  }else{
+			$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">This email has not been activated!</div>');
+			redirect('auth');
+		  }
 		 }else{
 			$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Email is not registred!</div>');
 			   redirect('auth');
@@ -81,5 +98,8 @@ class Auth extends CI_Controller {
 		$this->session->sess_destroy();
 		$this->session->set_flashdata('message', '<small class="text-danger"></small>');
 		redirect('auth');
+	}
+	public function blocked(){
+		echo "Access blocked";
 	}
 }
