@@ -91,7 +91,7 @@ class Auth extends CI_Controller {
 
 	public function logout(){
 		$this->session->sess_destroy();
-		$this->session->set_flashdata('message', '<small class="text-danger"></small>');
+		$this->session->set_flashdata('logout', '<small class="text-danger">Anda berhasil logout</small>');
 		redirect('auth');
 	}
 	public function blocked(){

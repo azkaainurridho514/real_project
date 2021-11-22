@@ -48,6 +48,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">x</button>
                   </div>
                 <?php endif; ?>
+                
+                <?= $this->session->flashdata('logout') ?>
+
                 <form role="form" class="text-start" action="<?= base_url('auth') ?>" method="post">
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Email</label>
