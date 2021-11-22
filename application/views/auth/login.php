@@ -42,16 +42,21 @@
                 </div>
               </div>
               <div class="card-body">
-              <?= $this->session->flashdata('message') ?>
+                <?php if($this->session->flashdata('message') !== null): ?>
+                  <div class="alert alert-danger text-light alert-dismissible fade show" role="alert">
+                    <?= $this->session->flashdata('message') ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">x</button>
+                  </div>
+                <?php endif; ?>
                 <form role="form" class="text-start" action="<?= base_url('auth') ?>" method="post">
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email">
+                    <input type="email" class="form-control" name="email" value="<?= set_value('email'); ?>">
                   </div>
                   <?= form_error('email', '<small>', '</small>'); ?>
                   <div class="input-group input-group-outline mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password" value="<?= set_value('password'); ?>">
                   </div>
                   <?= form_error('password', '<small>', '</small>'); ?>
                   <div class="text-center">

@@ -8,16 +8,15 @@ class Auth extends CI_Controller {
 		$this->load->library('form_validation');
 	}
 	public function index()
-	{
+	{	
 		$this->form_validation->set_rules('email', 'Email' , 'required|trim|valid_email', [
 			'required' => 'Field nama tidak boleh kosong',
-			'valid_email' => 'Email tidak falid'
+			'valid_email' => 'Email tidak valid'
 		]);
 		$this->form_validation->set_rules('password', 'Password' , 'required|trim', [
 			'required' => 'Field password tidak boleh kosong'
 		]);
-
-		if($this->form_validation->run() == false){
+		if($this->form_validation->run() === false){
 			$this->load->view('auth/login');
 		}else{
             $this->_login();
@@ -29,7 +28,7 @@ class Auth extends CI_Controller {
 			'required' => 'Field username tidak boleh kosong!',
 			'min_length' => 'Masukan username minimal 8 karakter!'
 		]);
-		$this->form_validation->set_rules('email', 'email', 'required|trim|min_length[5]|valid_email|unique[user]', [
+		$this->form_validation->set_rules('email', 'email', 'required|trim|min_length[5]|valid_email', [
 			'required' => 'Field email tidak boleh kosong!',
 			'min_length' => 'Masukan email yang lebih dari 5 karakter!',
 			'valid_email' => 'Email tidak valid'
@@ -51,9 +50,9 @@ class Auth extends CI_Controller {
 			 'role_id' => 2,
 			 'is_active' => 1
 			];
-        var_dump($data);
-			// $this->db->insert('user', $data);
-			// redirect('auth');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Registred Succcessfully</div>');
+			$this->db->insert('user', $data);
+			redirect('auth');
 		}
 	}
 
@@ -77,15 +76,15 @@ class Auth extends CI_Controller {
 				}
 				
 			 }else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Wrong password!</div>');
+				$this->session->set_flashdata('message', 'Wrong password!');
 				   redirect('auth'); 
 		   }
 		  }else{
-			$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">This email has not been activated!</div>');
-			redirect('auth');
+			$this->session->set_flashdata('message', 'This email has not been activated!');
+			    redirect('auth');
 		  }
 		 }else{
-			$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Email is not registred!</div>');
+			$this->session->set_flashdata('message', 'Email is not registred!');
 			   redirect('auth');
 		 }
 	}
