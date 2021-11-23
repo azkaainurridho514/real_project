@@ -8,16 +8,15 @@ class Auth extends CI_Controller {
 		$this->load->library('form_validation');
 	}
 	public function index()
-	{
+	{	
 		$this->form_validation->set_rules('email', 'Email' , 'required|trim|valid_email', [
 			'required' => 'Field nama tidak boleh kosong',
-			'valid_email' => 'Email tidak falid'
+			'valid_email' => 'Email tidak valid'
 		]);
 		$this->form_validation->set_rules('password', 'Password' , 'required|trim', [
 			'required' => 'Field password tidak boleh kosong'
 		]);
-
-		if($this->form_validation->run() == false){
+		if($this->form_validation->run() === false){
 			$this->load->view('auth/login');
 		}else{
             $this->_login();
@@ -51,9 +50,9 @@ class Auth extends CI_Controller {
 			 'role_id' => 2,
 			 'is_active' => 1
 			];
-        var_dump($data);
-			// $this->db->insert('user', $data);
-			// redirect('auth');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Registred Succcessfully</div>');
+			$this->db->insert('user', $data);
+			redirect('auth');
 		}
 	}
 
@@ -65,6 +64,7 @@ class Auth extends CI_Controller {
 	      if($user['is_active'] == 1){
 			if(password_verify($password, $user['password'])){
 				$data = [
+				  'id' => $user['id'],
 				  'email' => $user['email'],
 				  'role_id' => $user['role_id']
 				]; 
@@ -81,22 +81,22 @@ class Auth extends CI_Controller {
 				}
 				
 			 }else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Wrong password!</div>');
+				$this->session->set_flashdata('message', 'Wrong password!');
 				   redirect('auth'); 
 		   }
 		  }else{
-			$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">This email has not been activated!</div>');
-			redirect('auth');
+			$this->session->set_flashdata('message', 'This email has not been activated!');
+			    redirect('auth');
 		  }
 		 }else{
-			$this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Email is not registred!</div>');
+			$this->session->set_flashdata('message', 'Email is not registred!');
 			   redirect('auth');
 		 }
 	}
 
 	public function logout(){
 		$this->session->sess_destroy();
-		$this->session->set_flashdata('message', '<small class="text-danger"></small>');
+		$this->session->set_flashdata('logout', '<small class="text-danger">Anda berhasil logout</small>');
 		redirect('auth');
 	}
 	public function blocked(){

@@ -108,23 +108,23 @@
                     <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Username</label>
                       <input type="text" class="form-control" name="username">
-                      <?= form_error('username'); ?>
                     </div>
+                    <?= form_error('username'); ?>
                     <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Email</label>
                       <input type="text" class="form-control" name="email">
-                      <?= form_error('email'); ?>
                     </div>
+                    <?= form_error('email'); ?>
                     <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Password</label>
                       <input type="password" class="form-control" name="password1">
-                      <?= form_error('password1'); ?>
                     </div>
+                    <?= form_error('password1'); ?>
                     <div class="input-group input-group-outline mb-3">
                       <label class="form-label">Confirm</label>
                       <input type="password" class="form-control" name="password2">
-                      <?= form_error('password2'); ?>
                     </div>
+                    <?= form_error('password2'); ?>
                     <div class="text-center">
                       <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" name="submit">Sign Up</button>
                     </div>
