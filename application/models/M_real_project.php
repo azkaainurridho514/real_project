@@ -12,5 +12,7 @@
             $data=$this->db->query($query)->result_array();
             return $data ;
         }
+
+      
     }
 ?>

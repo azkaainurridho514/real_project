@@ -152,11 +152,56 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Insert</button>
+      <?php 
+             $query = " SELECT * FROM `master_barang` WHERE id_barang IN (SELECT MAX(id_barang) FROM `master_barang`) ";
+             $data = $this->db->query($query)->row_array();
+            ?>
+              <form method="post" action="<?= base_url() ?>user/insert">
+              <input type="hidden" name="id" value="<?= $data['id_barang'] + 1 ?>">
+                <div class="mb-3">
+                  <label for="" class="form-label">Nama barang</label>
+                  <input type="text" name="nama_barang" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Satuan</label>
+                  <input type="text" name="satuan" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Seluruh barang</label>
+                  <input type="text" name="jumlah_pengadaan" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Kondisi baik</label>
+                  <input type="text" name="jumlah_baik" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Kondisi buruk</label>
+                  <input type="text" name="jumlah_buruk" class="form-control">
+                </div>
+                <div class="mb-3">
+                  
+
+
+                <div class="btn-group dropend">
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropright
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </div>
+
+
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Keterangan</label>
+                  <input type="text" name="keterangan" class="form-control">
+                </div>
+                  <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">RESET</button>
+                 <button type="submit" class="btn btn-primary">SIMPAN</button>
+              </form>
       </div>
     </div>
   </div>
