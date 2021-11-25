@@ -9,7 +9,7 @@ class Admin extends CI_Controller {
     }
     public function index()
     {
-        $data['title'] = 'Admin';
+        $data['title'] = 'Dashboard Admin';
         $this->template->load('template', 'dashboard/index', $data);
     }
     public function profile($id)

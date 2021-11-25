@@ -7,6 +7,7 @@ class User extends CI_Controller {
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('M_user');
     }
     
     public function index(){
@@ -17,45 +18,13 @@ class User extends CI_Controller {
      }
 
      public function insert(){
+         $this->M_user->insert();
+         redirect('user');
 
-         $id               = $this->input->post('id');
-         $nama_barang      = $this->input->post('nama_barang');
-         $satuan           = $this->input->post('satuan');
-         $keterangan       = $this->input->post('keterangan');
-         $jumlah_pengadaan = $this->input->post('jumlah_pengadaan');
-         $jumlah_baik      = $this->input->post('jumlah_baik');
-         $jumlah_buruk     = $this->input->post('jumlah_buruk');
-         $ruangan          = $this->input->post('ruangan');
+     }
 
-         $master_barang = [
-             'id_barang' => $id,
-             'id_pengadaan' => $id,
-             'id_kondisi' => $id,
-             'id_ruangan' => 2,
-             'nama_barang' => $nama_barang,
-             'satuan' => $satuan,
-             'keterangan' => $keterangan,
-             'gambar' => 'gambar'
-         ];
-
-         $this->db->insert('master_barang', $master_barang);
-
-         $pengadaan = [
-             'id_pengadaan' => $id,
-             'jumlah_pengadaan' => $jumlah_pengadaan
-           
-         ];
-
-         $this->db->insert('pengadaan', $pengadaan);
-
-         $kondisi = [
-             'id_kondisi' => $id,
-             'id_barang' => $id,
-             'jumlah_baik' => $jumlah_baik,
-             'jumlah_buruk' => $jumlah_buruk
-         ];
-
-         $this->db->insert('kondisi', $kondisi);
+     public function delete($id){
+         $this->M_user->delete($id);
          redirect('user');
      }
 
