@@ -64,7 +64,7 @@
                       <a href="<?= base_url() ?>user/edit/<?= $d['id_barang'] ?>" class="text-decoration-none">
                       <span class="badge rounded-pill bg-success">Edit</span>
                       </a>
-                      <a href="<?= base_url() ?>user/delete/<?= $d['id_barang'] ?>" class="text-decoration-none">
+                      <a href="<?= base_url() ?>user/delete/<?= $d['id_barang'] ?>" onclick="return confirm('Anda yakin ingin menghapus?')" class="text-decoration-none">
                       <span class="badge rounded-pill bg-danger">Delete</span>
                       </a>
                     </td>
@@ -105,7 +105,15 @@
       </div>
       <div class="modal-body">
         <form action="<?= base_url() ?>user/insert" method="post">
-        <input type="hidden" name="id" value="<?= $data['id_barang'] + 1 ?>">
+        <?php
+         $first = 1;
+        if(!$data) { ?>
+        <input type="hidden" name="id" value="<?= $first ?>">
+        <?php } else{ ?>
+          <input type="hidden" name="id" value="<?= $data['id_barang'] + 1 ?>">
+        <?php } ?>
+
+        
         <div class="row">
           <div class="col">
             <div class="input-group mb-3">
