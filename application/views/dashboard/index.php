@@ -30,7 +30,13 @@
                     <td><?= $u['username'] ?></td>
                     <td><?= $u['email'] ?></td>
                     <td><?= $u['role_id'] ?></td>
-                    <td><?= $u['is_active'] ?></td>
+                    <td>
+                      <?php if($u['is_active']): ?>
+                      <input class="form-check-input" type="checkbox" checked="checked" data-active="<?= $u['is_active'] ?>" data-id="<?= $u['id'] ?>">
+                      <?php else: ?>
+                        <input class="form-check-input" type="checkbox" data-active="<?= $u['is_active'] ?>" data-id="<?= $u['id'] ?>">
+                      <?php endif; ?>
+                    </td>
                     <td>
                       <a href="<?=$u['id']?>" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $u['id']?>" class="text-decoration-none">
                       <span class="badge rounded-pill bg-success">Edit</span>
