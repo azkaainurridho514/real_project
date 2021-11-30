@@ -28,4 +28,9 @@ class User extends CI_Controller {
          redirect('user');
      }
 
+     public function update($id){
+        $this->M_user->update($id);
+        redirect('user');
+     }
+
 }
