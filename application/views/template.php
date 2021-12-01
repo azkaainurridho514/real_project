@@ -266,8 +266,8 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?= base_url() ?>assets/js/pages/dashboard.js"></script>
 <!-- js bootstrap 5 -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 
 <!-- jQuery cdn -->
@@ -276,19 +276,17 @@
 <!-- jQuery ajax -->
 <script>
   $(document).ready(function(){
-    $('.form-check-input').click(function(){
+
+    $('.form-check-input').on('click', function(){
      const access = $(this).data('active');
      const id = $(this).data('id');
      $.ajax({
        type: "post",
        data: {
-         active: access,
-         id:id
+         'active': access,
+         'id': id
          },
-       url:"<?= base_url() ?>admin/changeaccess",
-       success: function(){
-         document.location.href = "<?= base_url('admin') ?>";
-       }
+       url:"<?= base_url() ?>admin/changeaccess"
      });
    });
   });

@@ -25,17 +25,14 @@ class Admin extends CI_Controller {
     public function changeaccess(){
         $is_active = $this->input->post('active');
         $id = $this->input->post('id');
-   
-        $user = $this->db->get('user', ['id', $id]);
+        // $user = $this->db->get_where('user', ['id', $id])->row_array();
 
-        if($user['is_active'] == 0){
-        //   $query1 = "UPDATE user SET is_active='1'";
-        //   $this->db->query($query1);
-         echo"oke";
+        if($is_active == 0){
+          $query1 = "UPDATE user SET is_active='1' where id='$id'";
+          $this->db->query($query1);
         }else{
-        //   $query2 = "UPDATE user SET is_active='0'";
-        //   $this->db->query($query2);
-        echo"oke lagi";
+          $query2 = "UPDATE user SET is_active='0' where id='$id'";
+          $this->db->query($query2);
         }
 
     }
