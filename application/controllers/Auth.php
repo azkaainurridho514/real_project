@@ -50,7 +50,7 @@ class Auth extends CI_Controller {
 			 'role_id' => 2,
 			 'is_active' => 1
 			];
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Registred Succcessfully</div>');
+            $this->session->set_flashdata('register', 'Registred Succcessfully');
 			$this->db->insert('user', $data);
 			redirect('auth');
 		}
@@ -65,33 +65,36 @@ class Auth extends CI_Controller {
 			if(password_verify($password, $user['password'])){
 				$data = [
 				  'id' => $user['id'],
+				  'username' => $user['username'],
 				  'email' => $user['email'],
 				  'role_id' => $user['role_id']
 				]; 
 				$this->session->set_userdata($data);
 				if($user['role_id'] == 1){
+				  $this->session->set_flashdata('login', 'Berhasil Login!');
 				  redirect('admin');
 				}else{
+				  $this->session->set_flashdata('login', 'Berhasil Login!');
 				  redirect('user');
 				}
 				
 			 }else{
-				$this->session->set_flashdata('message', 'Wrong password!');
+				$this->session->set_flashdata('alert', 'Wrong password!');
 				   redirect('auth'); 
 		   }
 		  }else{
-			$this->session->set_flashdata('message', 'This email has not been activated!');
+			$this->session->set_flashdata('alert', 'This email has not been activated!');
 			    redirect('auth');
 		  }
 		 }else{
-			$this->session->set_flashdata('message', 'Email is not registred!');
+			$this->session->set_flashdata('alert', 'Email is not registred!');
 			   redirect('auth');
 		 }
 	}
 
 	public function logout(){
-		$this->session->sess_destroy();
-		$this->session->set_flashdata('logout', '<small class="text-danger">Anda berhasil logout</small>');
+		$this->session->unset_userdata('id', 'email', 'role_id');
+		$this->session->set_flashdata('logout', 'Anda berhasil logout');
 		redirect('auth');
 	}
 	public function blocked(){

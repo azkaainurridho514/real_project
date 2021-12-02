@@ -22,17 +22,35 @@
       <a href="<?= base_url() ?>" class="h3"><b>Smkp</b>Ciwaringin</a>
     </div>
     <div class="card-body">
-
-       <?php if($this->session->flashdata('message') !== null): ?>
-             <div class="alert alert-danger text-light alert-dismissible fade show" role="alert">
-                <?= $this->session->flashdata('message') ?>
+            <?php if($this->session->flashdata('alert')) : ?>
+             <div class="alert alert-danger text-light alert-dismissible fade show text-center" role="alert">
+                <?= $this->session->flashdata('alert') ?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-       <?php endif; ?>
+              <?php endif; ?>
+
+              <?php if($this->session->flashdata('register')) : ?>
+             <div class="alert alert-success text-light alert-dismissible fade show text-center" role="alert">
+             <?= $this->session->flashdata('register') ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <?php endif; ?>
+
+            <?php if($this->session->flashdata('logout')) : ?>
+             <div class="alert alert-success text-light alert-dismissible fade show text-center" role="alert">
+             <?= $this->session->flashdata('logout') ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <?php endif; ?>
                 
-                <?= $this->session->flashdata('logout') ?>
+                
+                
 
       <p class="login-box-msg">Sign in to start your session</p>
 

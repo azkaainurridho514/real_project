@@ -74,7 +74,7 @@
           <img src="<?= base_url() ?>assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block text-decoration-none">Alexander Pierce</a>
+          <a href="#" class="d-block text-decoration-none"><?= $this->session->userdata('username'); ?></a>
         </div>
       </div>
 
@@ -286,7 +286,10 @@
          'active': access,
          'id': id
          },
-       url:"<?= base_url() ?>admin/changeaccess"
+       url:"<?= base_url() ?>admin/changeaccess",
+       success:(function(data){
+         window.location="<?= base_url() ?>admin";
+       })
      });
    });
   });
