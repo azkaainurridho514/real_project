@@ -254,6 +254,8 @@
   </aside>
   <!-- /.control-sidebar -->
 </div>
+
+
 <!-- ./wrapper -->
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
@@ -273,9 +275,19 @@
 <!-- jQuery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+<script src="<?= base_url() ?>assets/js/sweetalert2.all.min.js"></script>
+
 <!-- jQuery ajax -->
 <script>
   $(document).ready(function(){
+
+    function successInsert(){
+      Swal.fire({
+        icon: 'success',
+        title: 'Insert data',
+        text: 'Successfully'
+      })
+    }
 
     $('.form-check-input').on('click', function(){
      const access = $(this).data('active');

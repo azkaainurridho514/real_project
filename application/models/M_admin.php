@@ -5,6 +5,7 @@ class M_admin extends CI_Model
         $query = "SELECT * FROM user 
                   INNER JOIN user_role 
                   ON user.role_id = user_role.id
+                  WHERE role='user'
         ";
         return $this->db->query($query)->result_array();
         // return $this->db->get('user')->result_array();
