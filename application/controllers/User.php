@@ -37,6 +37,7 @@ class User extends CI_Controller {
 
      public function update($id){
          $this->M_user->update($id);
+         $this->session->set_flashdata('message', 'Data berhasil di ubah');
          redirect('user');
      }
 

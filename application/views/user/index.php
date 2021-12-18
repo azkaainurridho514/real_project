@@ -18,6 +18,14 @@
               <div class="card-header">
                 <h3 class="card-title">Data barang</h3>
                 <a href="<?= base_url() ?>user/insert_view" class="btn btn-primary ms-5">Insert new data</a>
+                <?php if($this->session->flashdata('message')) : ?>
+                  <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                    <?= $this->session->flashdata('message'); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  <?php else: ?>
+                <?php endif; ?>
+
               </div>
               <!-- /.card-header -->
               <div class="card-body">
