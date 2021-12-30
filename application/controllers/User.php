@@ -30,6 +30,7 @@ class User extends CI_Controller {
             $this->template->load('template', 'user/insert', $data);
          }else{
             $this->M_user->insert();
+            $this->session->set_flashdata('message', 'Data berhasil di tambah');
             redirect('user');
          }
 
@@ -43,6 +44,7 @@ class User extends CI_Controller {
 
      public function delete($id){
          $this->M_user->delete($id);
+         $this->session->set_flashdata('message', 'Data berhasil di hapus');
          redirect('user');
      }
 

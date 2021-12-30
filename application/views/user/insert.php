@@ -6,6 +6,7 @@
 <div class="container">
     <div class="card col-lg-8">
       <div class="card-body">
+        <a href="<?= base_url() ?>user" class="btn bg-primary">Back</a>
         <form action="<?= base_url() ?>user/insert_view" method="post">
           <div class="form-group">
             <?php 

@@ -48,7 +48,7 @@ class Auth extends CI_Controller {
 			 'email' => htmlspecialchars($this->input->post('email', true)),
 			 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
 			 'role_id' => 2,
-			 'is_active' => 1
+			 'is_active' => 0
 			];
             $this->session->set_flashdata('register', 'Registred Succcessfully');
 			$this->db->insert('user', $data);
@@ -71,10 +71,10 @@ class Auth extends CI_Controller {
 				]; 
 				$this->session->set_userdata($data);
 				if($user['role_id'] == 1){
-				  $this->session->set_flashdata('login', 'Berhasil Login!');
+				  $this->session->set_flashdata('message', 'Berhasil Login!');
 				  redirect('admin');
 				}else{
-				  $this->session->set_flashdata('login', 'Berhasil Login!');
+				  $this->session->set_flashdata('message', 'Berhasil Login!');
 				  redirect('user');
 				}
 				

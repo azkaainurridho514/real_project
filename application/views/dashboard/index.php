@@ -1,5 +1,11 @@
 <h1 class="text-center"> Welcome to dashboard admin </h1>
-
+              <?php if($this->session->flashdata('message')) : ?>
+                  <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                    <?= $this->session->flashdata('message'); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  <?php else: ?>
+                <?php endif; ?>
 <div class="row">
           <div class="col">
             <div class="card">
@@ -8,7 +14,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover text-center">
+                <table id="myTable" class="table table-bordered table-hover text-center display nowrap">
                   <thead>
                   <tr>
                     <th>No</th>

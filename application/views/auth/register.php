@@ -25,7 +25,7 @@
 
       <form action="<?= base_url() ?>auth/register" method="post">
         <div class="input-group">
-          <input type="text" class="form-control" name="username" placeholder="Username">
+          <input type="text" class="form-control" name="username" placeholder="Username" value="<?= set_value('username') ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -35,7 +35,7 @@
         <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
         <div class="mb-3"></div>
         <div class="input-group">
-          <input type="text" class="form-control" name="email" placeholder="Email">
+          <input type="text" class="form-control" name="email" placeholder="Email" value="<?= set_value('email') ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>

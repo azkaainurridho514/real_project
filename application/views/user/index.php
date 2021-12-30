@@ -29,7 +29,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover text-center">
+                <table id="myTable" class="table table-bordered table-hover text-center display nowrap">
                   <thead>
                   <tr>
                     <th>No</th>
@@ -64,7 +64,7 @@
                 <div class="modal-dialog modal-xl">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Edit data</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -72,7 +72,7 @@
                       <form action="<?= base_url() ?>user/update/<?= $d['id_barang'] ?>" method="post">
                         <input type="hidden" name="id" value="<?= $d['id_barang'] ?>">
                       <div class="row">
-                        <div class="col">
+                        <div class="col-lg-6">
                           <div class="input-group mb-3">
                             <input type="text" class="form-control" name="nama_barang" value="<?= $d['nama_barang'] ?>">
                           </div>
@@ -87,7 +87,7 @@
                           </div>
                           
                         </div>
-                        <div class="col">
+                        <div class="col-lg-6">
 
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Kondisi buruk" name="jumlah_buruk" value="<?= $d['jumlah_buruk'] ?>">
@@ -105,7 +105,12 @@
                             </select>
                           </div>
                           <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Keterangan" name="keterangan" value="<?= $d['keterangan'] ?>">
+                            <!-- <input type="text" class="form-control" placeholder="Keterangan" value=""> -->
+
+                            <div class="input-group mb-3">
+                              <textarea class="form-control" placeholder="" name="keterangan" ><?= $d['keterangan'] ?></textarea>
+                              <!-- <label for="floatingTextarea2">Keterangan</label> -->
+                            </div>
                           </div>
                         </div>
                       </div>
