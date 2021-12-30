@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2021 at 07:25 AM
+-- Generation Time: Dec 30, 2021 at 06:00 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -40,10 +40,7 @@ CREATE TABLE `kondisi` (
 
 INSERT INTO `kondisi` (`id_kondisi`, `id_barang`, `jumlah_baik`, `jumlah_buruk`) VALUES
 (1, 1, '50', 50),
-(2, 2, '50', 50),
-(3, 3, '1231', 123123),
-(5, 5, '1', 123122),
-(6, 6, '', 0);
+(2, 2, '50', 33);
 
 -- --------------------------------------------------------
 
@@ -67,12 +64,8 @@ CREATE TABLE `master_barang` (
 --
 
 INSERT INTO `master_barang` (`id_barang`, `id_pengadaan`, `id_kondisi`, `id_ruangan`, `nama_barang`, `satuan`, `keterangan`, `gambar`) VALUES
-(1, 1, 1, '1', 'komputer', '1 pcs', 'perlengkapan lengkap', ''),
-(2, 2, 2, '2', 'meja', '1 pcs', 'datang tahun 2200', NULL),
-(3, 3, 3, '2', 'asdasd', '123123', 'sdgsag', 'gambar'),
-(4, 4, 4, '2', 'bumi', '1', 'mantap', 'gambar'),
-(5, 5, 5, '2', 'bumi', '123123', 'asdasdasd', 'gambar'),
-(6, 6, 6, '2', 'meja', '', '', 'gambar');
+(1, 1, 1, '2', 'komputer', '1 pcs', 'perlengkapan lengkap', 'gambar'),
+(2, 2, 2, '1', 'meja', '1 pcs', 'datang tahun 2200', 'gambar');
 
 -- --------------------------------------------------------
 
@@ -91,10 +84,7 @@ CREATE TABLE `pengadaan` (
 
 INSERT INTO `pengadaan` (`id_pengadaan`, `jumlah_pengadaan`) VALUES
 (1, '100'),
-(2, '100'),
-(3, '23232'),
-(5, '1231'),
-(6, '');
+(2, '100');
 
 -- --------------------------------------------------------
 
@@ -122,7 +112,7 @@ INSERT INTO `ruangan` (`id_ruangan`, `ruang`) VALUES
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -134,11 +124,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `role_id`, `is_active`) VALUES
+INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `role_id`, `is_active`) VALUES
 (8, 'User satu', 'user1@gmail.com', '$2y$10$Dq8seKHIMmHvPjVCwphpiOfaPXVDH3eHGuYRnk4CIj3zzC5ufX41y', 2, 1),
 (9, 'admin satu', 'admin1@gmail.com', '$2y$10$YbnmKmHRBd/hKfFPGPd3m.UwW.GmceneeRSje8sdFcc9o2jLd30Km', 1, 1),
 (10, 'azka ainurridho', 'azkaainurridho@gmail.com', '$2y$10$zNzV4lsEnilObVQKPjwjQepcW9HMrfe9mrFytjjKfYpeNJvfCjrge', 2, 1),
-(11, 'qori hidayah', 'qoryhidayah@gmail.com', '$2y$10$AAbnnBXEE7RUZF6yqU1OUuMffMGJ1He1zdp0uQzbV6q7dza8fwePq', 2, 1);
+(12, 'asdasdasd', 'asdasd@gmail.com', '$2y$10$RzC.9h.purtcquQvoiCyx.cYX0IW3dIiCmgEwUj/fPsuP54aX7Mnm', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -219,8 +209,8 @@ CREATE TABLE `user_sub_menu` (
 --
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
-(1, 1, 'Dashboard <small style=\"font-size: 10px;\">admin</small>', 'admin', 'bi bi-speedometer', 1),
-(2, 2, 'Dashboard ', 'user', 'bi bi-speedometer2', 1);
+(1, 1, 'Dashboard <small style=\"font-size: 10px;\">admin</small>', 'admin', 'user-shield', 1),
+(2, 2, 'Dashboard ', 'user', 'user', 1);
 
 --
 -- Indexes for dumped tables
@@ -254,7 +244,7 @@ ALTER TABLE `ruangan`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- Indexes for table `user_access_menu`
@@ -294,7 +284,7 @@ ALTER TABLE `ruangan`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
